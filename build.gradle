@@ -1,8 +1,13 @@
 plugins {
     id 'org.springframework.boot' version '2.7.1'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.12.RELEASE'
     id 'java'
+    id 'groovy'
 }
+
+def springBootVersion = '2.7.1'
+def lombokVersion = '1.18.24'
+def spockVersion = '2.1-groovy-3.0'
 
 group = 'org.cecil'
 version = '0.0.1-SNAPSHOT'
@@ -19,14 +24,24 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-webflux:${springBootVersion}"
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    developmentOnly "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+    testImplementation "org.spockframework:spock-core:${spockVersion}"
+    testImplementation "org.spockframework:spock-spring:${spockVersion}"
+    testImplementation "com.github.javafaker:javafaker:1.0.2"
+    testImplementation "org.seleniumhq.selenium:selenium-java:4.3.0"
+    testImplementation 'org.awaitility:awaitility:4.2.0'
+    testImplementation("org.yaml:snakeyaml") {
+        version {
+            strictly '1.26'
+        }
+    }
     testImplementation 'io.projectreactor:reactor-test'
 }
 
